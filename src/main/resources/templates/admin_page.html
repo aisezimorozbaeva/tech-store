@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .login-form {
+            width: 340px;
+            margin: 50px auto;
+        }
+
+        .login-form form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+
+        .form-control, .btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+
+        .btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--Logout-->
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">LOG OUT<i class="fas fa-sign-out-alt"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<!--All users page-->
+<h1 class="h2">Admin panel</h1>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#UsersTable" id="idUsersTable">
+            Users table</a>
+    </li>
+
+    <input type="button" value="Add New User" onclick="location.href='/new_user'" class="btn btn-outline-primary"/>
+    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addProducts">Add Products</button>
+    <button class="btn btn-outline-primary"><a href="/api/product"></a>Product table</button>
+    <button class="btn btn-outline-primary"><a href="/api/category"></a>Category table</button>
+
+
+    <!--    <div style="padding-left: 670px" class="nav justify-content-center">-->
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="#">Search</button>
+    </form>
+    <!--    </div>-->
+    <!--    </div>-->
+
+
+
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="UsersTable">
+        <div class="card">
+            <div class="card-header">
+                All users
+            </div>
+            <table id="table-id" class="table table-bordered border-primary">
+                <tr>
+                    <th> Id</th>
+                    <th> UserName</th>
+                    <th> FirstName</th>
+                    <th> LastName</th>
+                    <th> Gender</th>
+                    <th> Email</th>
+                    <th> PhoneNumber</th>
+                    <th> BirthDate</th>
+                    <th> RegisterDate</th>
+                    <th> Roles</th>
+                    <th> Operations</th>
+                </tr>
+            </table>
+            <div id="update" class="login-form"></div>
+            <div id="add" class="login-form">
+            </div>
+
+            <!--JSscript-->
+            <script>
+                function register() {
+                    const register = document.getElementById('register');
+                    let url = 'http://localhost:9898/register';
+
+                    fetch("http://localhost:9898/users/getById/" + 1)
+                        .then(response => response.json())
+                        .then(console.log)
+
+                    register.addEventListener('submit', async function (event) {
+
+                        event.preventDefault();
+
+                        let id = document.getElementById('id').value;
+                        let username = document.getElementById('username').value;
+                        let firstName = document.getElementById('firstName').value;
+                        let lastName = document.getElementById('lastName').value;
+                        let gender = document.getElementById('gender').value;
+                        let email = document.getElementById('email').value;
+                        let phoneNumber = document.getElementById('phoneNumber').value;
+                        let birthDate = document.getElementById('birthDate').value;
+                        let registerDate = document.getElementById('registerDate').value;
+                        let roles = [];
+                        if (document.getElementById('role_user').checked) {
+                            let array1 = new Object();
+                            array1.id = 1;
+                            roles.push(array1);
+                        }
+                        if (document.getElementById('role_admin').checked) {
+                            let array2 = new Object();
+                            array2.id = 2;
+                            roles.push(array2);
+                        }
+
+                        let response = await fetch(url, {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: id,
+                                name: username,
+                                firstName: null,
+                                lastName: lastName,
+                                gender: gender,
+                                email: email,
+                                phoneNumber: phoneNumber,
+                                birthDate: birthDate,
+                                registerDate : registerDate,
+                                roles: roles
+                            })
+                        });
+                        window.location.reload(true);
+                        let answer = await response.name;
+                        // console.log(answer);
+                    });
+                }
+
+                function deleteByIdTest(id) {
+                    fetch('http://localhost:9898/users/deleteById/2'+id, {
+                        method: "DELETE"
+                    });
+                    window.location.reload(true);
+                }
+
+
+                let url2 = 'http://localhost:9898/users';
+                fetch(url2)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(function (user) {
+                            let mass = [];
+                            user.roles.map(role => {
+                                mass.push(role.name);
+                            })
+
+
+                            let output = `
+                    <td id="user-id"> ${user.id}</td>
+                    <td> ${user.username}</td>
+                    <td> ${user.firstName}</td>
+                    <td> ${user.lastName}</td>
+                    <td> ${user.gender}</td>
+                    <td> ${user.email}</td>
+                    <td> ${user.phoneNumber}</td>
+                    <td> ${user.birthDate}</td>
+                    <td> ${user.registerDate}</td>
+
+                    <td> ${mass} </td>
+                    <td>
+
+                    <input type="button" onclick="deleteByIdTest(${user.id})" value="delete" class="btn btn-outline-danger">
+                    <input type="button" value="update" onclick="location.href='/main_page/update'" / class="btn btn-outline-primary">
+
+
+                     </td>`;
+
+                            let value1 = document.getElementById('table-id');
+                            value1.innerHTML += output;
+                        })
+                    })
+
+            </script>
+            <script src="js/new_user.js"></script>
+            <!--            <script src="js/test.js"></script>-->
+            <!--            <script src="js/edit_user.js"></script>-->
+            <!--<script src="../static/index.js"></script>-->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

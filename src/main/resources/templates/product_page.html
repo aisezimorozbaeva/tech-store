@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Product page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/comment.css">
+    <script src="https://kit.fontawesome.com/504c19067f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/main_page">Online_Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">HOME<span class="sr-only"></span></a>
+            </li>
+        </ul>
+
+        <div class="container-center">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div style="float:left; width:10%">
+            <ul class="nav justify-content-end" >
+                <li class="nav-item">
+                    <a class="nav-link" href="#">BASKET<i class="fas fa-cart-arrow-down"></i></a>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="nav justify-content-end" style="float:left; width:40%">
+            <li class="nav-item ">
+                <a class="nav-link" href="/logout">LOG OUT<i class="fas fa-sign-out-alt"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sign_up">SIGN UP<i class="fas fa-user-plus"></i></a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<main role="main">
+    <div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container col-md-12">
+                        <div id="productL" style="display: flex; flex-wrap: wrap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<hr style="padding: 20px 30px">
+<h5 style="padding-left: 40px">Оставьте коментарий</h5>
+<section class="main-section">
+    <div class="section-main-class">
+        <div class="section-inner-one">
+            <div class="section-final">
+                <textarea placeholder="Comment here" id="textarea-id"></textarea>
+                <p id="date"></p>
+                <div class="btn-outer">
+                    <div class="btn-inner">
+                        <div class="btn">
+                            <button id="cancel-id">Cancel</button>
+                        </div>
+                        <form class="btn" id="form-input-id">
+                            <input type="submit" value="Comment">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="comment-list">
+            </div>
+        </div>
+        <div class="section-inner-two">
+        </div>
+    </div>
+
+</section>
+<hr style="padding: 20px 30px; margin-top: 40px;">
+<footer class="page-footer font-small mdb-color pt-4">
+    <div class="container text-center text-md-left">
+        <div class="row text-center text-md-left mt-3 pb-3">
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Company name</h6>
+                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit.</p>
+            </div>
+            <hr class="w-100 clearfix d-md-none">
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+                <p><a href="#!">Categories 1</a></p>
+                <p><a href="#!">Categories 2</a></p>
+                <p><a href="#!">Categories 3</a></p>
+                <p><a href="#!">Categories 4</a></p>
+            </div>
+            <hr class="w-100 clearfix d-md-none">
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+                <p><a href="#!">Link 1</a></p>
+                <p><a href="#!">Link 2</a></p>
+                <p><a href="#!">Link 3</a></p>
+                <p><a href="#!">Link 4</a></p>
+            </div>
+            <hr class="w-100 clearfix d-md-none">
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                <p><i class="fas fa-home mr-3"></i> Bishkek, 720010, Kyrgyzstan</p>
+                <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+                <p><i class="fas fa-phone mr-3"></i> + 996 312 100 312</p>
+                <p><i class="fas fa-print mr-3"></i> + 996 315 311 315</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-7 col-lg-8">
+                <p class="text-center text-md-left"><i class="fas fa-copyright"></i> 2022 Copyright:
+                        <a href="#"><strong> Tech store</strong></a>
+                </p>
+            </div>
+            <div class="col-md-5 col-lg-4 ml-lg-0">
+                <div class="text-center text-md-right">
+                    <ul class="list-unstyled list-inline">
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<script src="./js/product_page.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
